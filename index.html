@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* Section Snap Container */
+    .snap-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      height: 100vh;
+      width: 100vw;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1rem;
+    }
+
+    /* Header Profile */
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .profile-info h1 {
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .profile-info p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Grid Layout for 4 Equal Rectangles */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1.25rem;
+      flex: 1;
+    }
+
+    /* Card Styling */
+    .project-card {
+      position: relative;
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px var(--accent-glow);
+    }
+
+    /* Background Animation Image */
+    .card-bg-anim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+      filter: grayscale(80%) brightness(0.6);
+      transition: opacity 0.4s ease, filter 0.4s ease, transform 0.6s ease;
+      z-index: 1;
+    }
+
+    .project-card:hover .card-bg-anim {
+      opacity: 0.85;
+      filter: grayscale(0%) brightness(0.9);
+      transform: scale(1.05);
+    }
+
+    /* Overlay Content */
+    .card-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(13, 17, 23, 0.95) 10%, rgba(13, 17, 23, 0.3) 60%, transparent);
+    }
+
+    .tag {
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-mern { background: #23272d; color: #61dafb; border: 1px solid #61dafb40; }
+    .tag-mean { background: #23272d; color: #dd0031; border: 1px solid #dd003140; }
+
+    .card-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-content p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Responsive adjustments for mobile/tablets */
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+      }
+      
+      .snap-container {
+        scroll-snap-type: none; /* Smooth vertical scroll for smaller screens */
+        height: auto;
+      }
+
+      .slide {
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .project-card {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="snap-container">
+
+    <!-- SLIDE 1: MERN Stack Projects -->
+    <section class="slide">
+      <header class="profile-header">
+        <div class="profile-info">
+          <h1>Usama Ali</h1>
+          <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
+        </div>
+        <span class="badge">Slide 1 / 2 &mdash; MERN Projects</span>
+      </header>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Project 1 Preview">
+          <div class="card-content">
+            <span class="tag tag-mern">MERN</span>
+            <h3>AI Analytics Dashboard</h3>
+            <p>Real-time data visualization engine powered by React, Node.js, Express, and MongoDB.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Project 2 Preview">
+          <div class="card-content">
+            <span class="tag tag-mern">MERN</span>
+            <h3>Real-Time Voice Assistant</h3>
+            <p>Full-stack conversational agent platform using WebSocket streaming and Express backend.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 3 Preview">
+          <div class="card-content">
+            <span class="tag tag-mern">MERN</span>
+            <h3>Micro-SaaS Billing Engine</h3>
+            <p>Scalable subscription management hub built with MongoDB, Express, React, and Stripe API.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Project 4 Preview">
+          <div class="card-content">
+            <span class="tag tag-mern">MERN</span>
+            <h3>DevOps Monitoring Tool</h3>
+            <p>Container status tracker with custom React charts and express backend log aggregators.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: MEAN Stack Projects -->
+    <section class="slide">
+      <header class="profile-header">
+        <div class="profile-info">
+          <h1>Usama Ali</h1>
+          <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
+        </div>
+        <span class="badge">Slide 2 / 2 &mdash; MEAN Projects</span>
+      </header>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Project 5 Preview">
+          <div class="card-content">
+            <span class="tag tag-mean">MEAN</span>
+            <h3>Enterprise CRM System</h3>
+            <p>Angular-driven customer relationship tool utilizing Angular RxJS state management & Express.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 6 Preview">
+          <div class="card-content">
+            <span class="tag tag-mean">MEAN</span>
+            <h3>Task Management Suite</h3>
+            <p>Kanban-style workflow coordinator with strict TypeScript interfaces and Node REST APIs.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Project 7 Preview">
+          <div class="card-content">
+            <span class="tag tag-mean">MEAN</span>
+            <h3>Cloud Infrastructure Portal</h3>
+            <p>Angular application designed to provision servers and query Mongo database metrics.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Project 8 Preview">
+          <div class="card-content">
+            <span class="tag tag-mean">MEAN</span>
+            <h3>Logistics Tracking System</h3>
+            <p>Real-time vehicle fleet location tracking dashboard leveraging Angular and Express sockets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

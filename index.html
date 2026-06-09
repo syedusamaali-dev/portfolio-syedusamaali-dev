@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Developer Portfolio</title>
+  <title>Usama Ali | Portfolio</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -12,6 +12,7 @@
       --text-muted: #8b949e;
       --accent: #58a6ff;
       --accent-glow: rgba(88, 166, 255, 0.25);
+      --btn-hover: #21262d;
     }
 
     * {
@@ -45,34 +46,58 @@
       gap: 1rem;
     }
 
-    /* Header Profile */
+    /* Redesigned Header Profile */
     .profile-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.25rem;
       background: var(--card-bg);
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .profile-info h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: var(--accent);
+      line-height: 1.2;
     }
 
     .profile-info p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
-    .badge {
-      background: rgba(88, 166, 255, 0.15);
+    /* Navigation Tabs Header */
+    .header-nav {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-btn:hover {
+      background: var(--btn-hover);
+      border-color: var(--accent);
       color: var(--accent);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     /* Grid Layout for 4 Equal Rectangles */
@@ -158,15 +183,66 @@
       line-height: 1.4;
     }
 
-    /* Responsive adjustments for mobile/tablets */
+    /* Popup Modal Styling for About Me & Contact */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      color: var(--text-main);
+      box-shadow: 0 10px 40px var(--accent-glow);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover { color: var(--accent); }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
     @media (max-width: 768px) {
       .projects-grid {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(4, 1fr);
       }
-      
+
       .snap-container {
-        scroll-snap-type: none; /* Smooth vertical scroll for smaller screens */
+        scroll-snap-type: none;
         height: auto;
       }
 
@@ -177,6 +253,12 @@
 
       .project-card {
         min-height: 200px;
+      }
+
+      .header-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
       }
     }
   </style>
@@ -192,12 +274,19 @@
           <h1>Usama Ali</h1>
           <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
         </div>
-        <span class="badge">Slide 1 / 2 &mdash; MERN Projects</span>
+
+        <nav class="header-nav">
+          <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
+          <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
+          <!-- Replace URLs with your exact profiles -->
+          <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
+          <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
+        </nav>
       </header>
 
       <div class="projects-grid">
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Project 1 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Project 1">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>AI Analytics Dashboard</h3>
@@ -206,7 +295,7 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Project 2 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Project 2">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>Real-Time Voice Assistant</h3>
@@ -215,7 +304,7 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 3 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 3">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>Micro-SaaS Billing Engine</h3>
@@ -224,11 +313,11 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Project 4 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Project 4">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>DevOps Monitoring Tool</h3>
-            <p>Container status tracker with custom React charts and express backend log aggregators.</p>
+            <p>Container status tracker with custom React charts and Express backend log aggregators.</p>
           </div>
         </div>
       </div>
@@ -241,12 +330,18 @@
           <h1>Usama Ali</h1>
           <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
         </div>
-        <span class="badge">Slide 2 / 2 &mdash; MEAN Projects</span>
+
+        <nav class="header-nav">
+          <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
+          <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
+          <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
+          <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
+        </nav>
       </header>
 
       <div class="projects-grid">
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Project 5 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Project 5">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Enterprise CRM System</h3>
@@ -255,7 +350,7 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 6 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 6">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Task Management Suite</h3>
@@ -264,7 +359,7 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Project 7 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Project 7">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Cloud Infrastructure Portal</h3>
@@ -273,7 +368,7 @@
         </div>
 
         <div class="project-card">
-          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Project 8 Preview">
+          <img class="card-bg-anim" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Project 8">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Logistics Tracking System</h3>
@@ -284,6 +379,50 @@
     </section>
 
   </div>
+
+  <!-- Popup Modal for About & Contact -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(type) {
+      const modal = document.getElementById('infoModal');
+      const body = document.getElementById('modalBody');
+
+      if (type === 'about') {
+        body.innerHTML = `
+          <h2 style="color: var(--accent); margin-bottom: 0.75rem;">About Me</h2>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            I am a Full-Stack Engineer specializing in scalable web applications using the MERN (MongoDB, Express, React, Node.js) and MEAN (MongoDB, Express, Angular, Node.js) stacks. I build performant backend architectures and dynamic, responsive frontends.
+          </p>
+        `;
+      } else if (type === 'contact') {
+        body.innerHTML = `
+          <h2 style="color: var(--accent); margin-bottom: 0.75rem;">Get In Touch</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Feel free to reach out for project collaborations or technical consultation.</p>
+          <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> usama@example.com</p>
+          <p style="margin-bottom: 0.5rem;"><strong>Location:</strong> Available Remote Worldwide</p>
+        `;
+      }
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside content box
+    window.onclick = function(event) {
+      const modal = document.getElementById('infoModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
 
 </body>
 </html>

@@ -6,13 +6,16 @@
   <title>Usama Ali | Portfolio</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --text-main: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #58a6ff;
-      --accent-glow: rgba(88, 166, 255, 0.25);
-      --btn-hover: #21262d;
+      /* Palette extracted from attached design */
+      --bg: #090314;
+      --card-bg: linear-gradient(135deg, #1b0c33 0%, #110624 100%);
+      --card-border: rgba(147, 51, 234, 0.25);
+      --text-main: #ffffff;
+      --text-muted: #b3a5cf;
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.35);
+      --btn-bg: rgba(126, 34, 206, 0.2);
+      --btn-hover: #7e22ce;
     }
 
     * {
@@ -24,6 +27,8 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background-color: var(--bg);
+      background-image: radial-gradient(circle at 50% 20%, #2e0854 0%, var(--bg) 70%);
+      background-attachment: fixed;
       color: var(--text-main);
       overflow-x: hidden;
     }
@@ -43,61 +48,88 @@
       display: flex;
       flex-direction: column;
       padding: 1.5rem;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
-    /* Redesigned Header Profile */
+    /* Scaled Up Header Profile */
     .profile-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1.25rem;
+      padding: 1.25rem 2rem; /* Increased overall padding */
       background: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      gap: 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
 
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem; /* Spacing between avatar and name text */
+    }
+
+    /* Larger Avatar Container */
+    .avatar-container {
+      position: relative;
+      width: 60px;  /* Increased size from 44px */
+      height: 60px; /* Increased size from 44px */
+      flex-shrink: 0;
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    /* Larger Typography for Profile Info */
     .profile-info h1 {
-      font-size: 1.3rem;
+      font-size: 1.75rem; /* Increased size from 1.3rem */
       color: var(--accent);
       line-height: 1.2;
+      font-weight: 700;
     }
 
     .profile-info p {
-      font-size: 0.85rem;
+      font-size: 1.05rem; /* Increased size from 0.85rem */
       color: var(--text-muted);
+      margin-top: 0.2rem;
     }
 
-    /* Navigation Tabs Header */
+    /* Larger Navigation Tabs Header */
     .header-nav {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.85rem;
       align-items: center;
     }
 
     .nav-btn {
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--btn-bg);
       color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.825rem;
-      font-weight: 500;
+      border: 1px solid var(--card-border);
+      padding: 0.7rem 1.2rem; /* Increased padding */
+      border-radius: 10px;
+      font-size: 0.95rem;     /* Increased text size */
+      font-weight: 600;
       text-decoration: none;
       cursor: pointer;
       transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
 
     .nav-btn:hover {
       background: var(--btn-hover);
       border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow);
+      color: #ffffff;
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     /* Grid Layout for 4 Equal Rectangles */
@@ -115,7 +147,8 @@
       background: var(--card-bg);
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
       cursor: pointer;
     }
@@ -123,7 +156,7 @@
     .project-card:hover {
       transform: translateY(-4px) scale(1.01);
       border-color: var(--accent);
-      box-shadow: 0 10px 30px var(--accent-glow);
+      box-shadow: 0 10px 35px var(--accent-glow);
     }
 
     /* Background Animation Image */
@@ -134,15 +167,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.2;
-      filter: grayscale(80%) brightness(0.6);
+      opacity: 0.15;
+      filter: grayscale(60%) brightness(0.5);
       transition: opacity 0.4s ease, filter 0.4s ease, transform 0.6s ease;
       z-index: 1;
     }
 
     .project-card:hover .card-bg-anim {
-      opacity: 0.85;
-      filter: grayscale(0%) brightness(0.9);
+      opacity: 0.75;
+      filter: grayscale(0%) brightness(0.8);
       transform: scale(1.05);
     }
 
@@ -155,7 +188,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.5rem;
-      background: linear-gradient(to top, rgba(13, 17, 23, 0.95) 10%, rgba(13, 17, 23, 0.3) 60%, transparent);
+      background: linear-gradient(to top, rgba(9, 3, 20, 0.95) 15%, rgba(9, 3, 20, 0.4) 65%, transparent);
     }
 
     .tag {
@@ -169,11 +202,12 @@
       margin-bottom: 0.5rem;
     }
 
-    .tag-mern { background: #23272d; color: #61dafb; border: 1px solid #61dafb40; }
-    .tag-mean { background: #23272d; color: #dd0031; border: 1px solid #dd003140; }
+    .tag-mern { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+    .tag-mean { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.3); }
 
     .card-content h3 {
       font-size: 1.25rem;
+      color: #ffffff;
       margin-bottom: 0.4rem;
     }
 
@@ -191,8 +225,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(5px);
+      background: rgba(9, 3, 20, 0.85);
+      backdrop-filter: blur(8px);
       z-index: 100;
       justify-content: center;
       align-items: center;
@@ -228,6 +262,7 @@
       .profile-header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 1.25rem;
       }
       .header-nav {
         width: 100%;
@@ -271,14 +306,21 @@
     <section class="slide">
       <header class="profile-header">
         <div class="profile-info">
-          <h1>Usama Ali</h1>
-          <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
+          <div class="avatar-container">
+            <img 
+              src="assests/profile-pic.png" 
+              alt="Usama Ali Profile" 
+            >
+          </div>
+          <div>
+            <h1>Usama Ali</h1>
+            <p>Full-Stack Engineer &bull; MEAN & MERN Architecture</p>
+          </div>
         </div>
 
         <nav class="header-nav">
           <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
           <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
-          <!-- Replace URLs with your exact profiles -->
           <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
           <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
         </nav>
@@ -287,11 +329,45 @@
       <div class="projects-grid">
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Project 1">
-          <div class="card-content">
-            <span class="tag tag-mern">MERN</span>
-            <h3>AI Analytics Dashboard</h3>
-            <p>Real-time data visualization engine powered by React, Node.js, Express, and MongoDB.</p>
-          </div>
+      <div class="card-content" style="padding: 1.75rem;">
+  <!-- Larger Tag Badge -->
+  <span class="tag tag-mean" style="font-size: 0.875rem; padding: 0.35rem 0.75rem;">MEAN</span>
+
+  <!-- Larger Title -->
+  <h3 style="font-size: 1.5rem; margin-top: 0.4rem; margin-bottom: 0.5rem; color: #ffffff;">Cloud Infrastructure Portal</h3>
+
+  <!-- Larger Description Text -->
+  <p style="font-size: 1.05rem; line-height: 1.5; color: var(--text-muted);">
+    Angular application designed to provision servers and query Mongo database metrics.
+  </p>
+
+  <!-- Project Action Badges with Larger Text -->
+  <div class="card-links" style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;">
+    <!-- GitHub Repo -->
+    <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener noreferrer" 
+       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+      🐙 GitHub
+    </a>
+
+    <!-- Live Website -->
+    <a href="https://your-live-website.com" target="_blank" rel="noopener noreferrer" 
+       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+      🌐 https://your-live-website.com
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" 
+       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+      💼 https://linkedin.com/in/your-profile
+    </a>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/923000000000?text=Hi%20Usama,%20I%20saw%20your%20Cloud%20Infrastructure%20Portal%20project!" target="_blank" rel="noopener noreferrer" 
+       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
+      💬 WhatsApp
+    </a>
+  </div>
+</div>
         </div>
 
         <div class="project-card">
@@ -306,7 +382,7 @@
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 3">
           <div class="card-content">
-            <span class="tag tag-mern">MERN</span>
+            <span class="tag tag-mean">MEAN</span>
             <h3>Micro-SaaS Billing Engine</h3>
             <p>Scalable subscription management hub built with MongoDB, Express, React, and Stripe API.</p>
           </div>
@@ -327,8 +403,16 @@
     <section class="slide">
       <header class="profile-header">
         <div class="profile-info">
-          <h1>Usama Ali</h1>
-          <p>Full-Stack Engineer &bull; MERN & MEAN Architecture</p>
+          <div class="avatar-container">
+            <img 
+              src="assests/profile-pic.png" 
+              alt="Usama Ali Profile" 
+            >
+          </div>
+          <div>
+            <h1>Usama Ali</h1>
+            <p>Full-Stack Engineer &bull; MEAN & MERN Architecture</p>
+          </div>
         </div>
 
         <nav class="header-nav">
@@ -352,7 +436,7 @@
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 6">
           <div class="card-content">
-            <span class="tag tag-mean">MEAN</span>
+            <span class="tag tag-mern">MERN</span>
             <h3>Task Management Suite</h3>
             <p>Kanban-style workflow coordinator with strict TypeScript interfaces and Node REST APIs.</p>
           </div>
@@ -370,7 +454,7 @@
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Project 8">
           <div class="card-content">
-            <span class="tag tag-mean">MEAN</span>
+            <span class="tag tag-mern">MERN</span>
             <h3>Logistics Tracking System</h3>
             <p>Real-time vehicle fleet location tracking dashboard leveraging Angular and Express sockets.</p>
           </div>

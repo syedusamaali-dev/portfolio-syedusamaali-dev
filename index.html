@@ -33,34 +33,22 @@
       overflow-x: hidden;
     }
 
-    /* Section Snap Container */
-    .snap-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-    }
-
-    .slide {
-      height: 100vh;
-      width: 100vw;
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      gap: 1.25rem;
-    }
-
-    /* Scaled Up Header Profile */
+    /* Fixed Global Profile Header */
     .profile-header {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 2rem; /* Increased overall padding */
+      padding: 1rem 2rem;
       background: var(--card-bg);
       border-radius: 16px;
       border: 1px solid var(--card-border);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
       gap: 1.5rem;
       flex-wrap: wrap;
     }
@@ -68,14 +56,13 @@
     .profile-info {
       display: flex;
       align-items: center;
-      gap: 1.2rem; /* Spacing between avatar and name text */
+      gap: 1.2rem;
     }
 
-    /* Larger Avatar Container */
     .avatar-container {
       position: relative;
-      width: 60px;  /* Increased size from 44px */
-      height: 60px; /* Increased size from 44px */
+      width: 55px;
+      height: 55px;
       flex-shrink: 0;
     }
 
@@ -88,21 +75,19 @@
       box-shadow: 0 0 14px var(--accent-glow);
     }
 
-    /* Larger Typography for Profile Info */
     .profile-info h1 {
-      font-size: 1.75rem; /* Increased size from 1.3rem */
+      font-size: 1.6rem;
       color: var(--accent);
       line-height: 1.2;
       font-weight: 700;
     }
 
     .profile-info p {
-      font-size: 1.05rem; /* Increased size from 0.85rem */
+      font-size: 1rem;
       color: var(--text-muted);
       margin-top: 0.2rem;
     }
 
-    /* Larger Navigation Tabs Header */
     .header-nav {
       display: flex;
       gap: 0.85rem;
@@ -113,9 +98,9 @@
       background: var(--btn-bg);
       color: var(--text-main);
       border: 1px solid var(--card-border);
-      padding: 0.7rem 1.2rem; /* Increased padding */
+      padding: 0.6rem 1.1rem;
       border-radius: 10px;
-      font-size: 0.95rem;     /* Increased text size */
+      font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
@@ -132,7 +117,25 @@
       box-shadow: 0 0 16px var(--accent-glow);
     }
 
-    /* Grid Layout for 4 Equal Rectangles */
+    /* Section Snap Container */
+    .snap-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      height: 100vh;
+      width: 100vw;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      padding: 8rem 1.5rem 1.5rem 1.5rem; /* Added top padding to clear fixed header */
+      gap: 1.25rem;
+    }
+
+    /* Grid Layout for Equal Rectangles */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -159,7 +162,6 @@
       box-shadow: 0 10px 35px var(--accent-glow);
     }
 
-    /* Background Animation Image */
     .card-bg-anim {
       position: absolute;
       top: 0;
@@ -179,7 +181,7 @@
       transform: scale(1.05);
     }
 
-    /* Overlay Content */
+    /* Overlay Content Structure */
     .card-content {
       position: relative;
       z-index: 2;
@@ -188,16 +190,16 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.5rem;
-      background: linear-gradient(to top, rgba(9, 3, 20, 0.95) 15%, rgba(9, 3, 20, 0.4) 65%, transparent);
+      background: linear-gradient(to top, rgba(9, 3, 20, 0.95) 20%, rgba(9, 3, 20, 0.45) 70%, transparent);
     }
 
     .tag {
       align-self: flex-start;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
+      padding: 0.35rem 0.75rem;
       border-radius: 6px;
       margin-bottom: 0.5rem;
     }
@@ -206,18 +208,76 @@
     .tag-mean { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.3); }
 
     .card-content h3 {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       color: #ffffff;
-      margin-bottom: 0.4rem;
+      margin-top: 0.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .live-project-link {
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      transition: color 0.2s ease;
+    }
+
+    .live-project-link:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
     }
 
     .card-content p {
-      font-size: 0.875rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
-    /* Popup Modal Styling for About Me & Contact */
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-github {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+
+    .btn-linkedin {
+      background: rgba(96, 165, 250, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    .btn-whatsapp {
+      background: rgba(74, 222, 128, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .action-btn:hover {
+      filter: brightness(1.2);
+      transform: translateY(-2px);
+    }
+
+    /* Modal Styling */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -257,12 +317,20 @@
 
     .close-btn:hover { color: var(--accent); }
 
-    /* Responsive adjustments */
+    /* Responsive Adjustments */
     @media (max-width: 850px) {
       .profile-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 1.5rem 1.5rem 0 1.5rem;
         flex-direction: column;
         align-items: flex-start;
         padding: 1.25rem;
+      }
+      .slide {
+        padding-top: 1.5rem;
       }
       .header-nav {
         width: 100%;
@@ -273,7 +341,7 @@
     @media (max-width: 768px) {
       .projects-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: auto;
       }
 
       .snap-container {
@@ -286,10 +354,6 @@
         min-height: 100vh;
       }
 
-      .project-card {
-        min-height: 200px;
-      }
-
       .header-nav {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -300,100 +364,128 @@
 </head>
 <body>
 
+  <!-- SINGLE GLOBAL HEADER -->
+  <header class="profile-header">
+    <div class="profile-info">
+      <div class="avatar-container">
+        <img src="assests/profile-pic.png" alt="Usama Ali Profile">
+      </div>
+      <div>
+        <h1>Usama Ali</h1>
+        <p>Full-Stack Engineer &bull; MEAN & MERN Architecture</p>
+      </div>
+    </div>
+
+    <nav class="header-nav">
+      <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
+      <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
+      <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
+      <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
+    </nav>
+  </header>
+
   <div class="snap-container">
 
     <!-- SLIDE 1: MERN Stack Projects -->
     <section class="slide">
-      <header class="profile-header">
-        <div class="profile-info">
-          <div class="avatar-container">
-            <img 
-              src="assests/profile-pic.png" 
-              alt="Usama Ali Profile" 
-            >
-          </div>
-          <div>
-            <h1>Usama Ali</h1>
-            <p>Full-Stack Engineer &bull; MEAN & MERN Architecture</p>
-          </div>
-        </div>
-
-        <nav class="header-nav">
-          <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
-          <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
-          <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
-          <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
-        </nav>
-      </header>
-
       <div class="projects-grid">
+        <!-- Project Card 1 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Project 1">
-      <div class="card-content" style="padding: 1.75rem;">
-  <!-- Larger Tag Badge -->
-  <span class="tag tag-mean" style="font-size: 0.875rem; padding: 0.35rem 0.75rem;">MEAN</span>
+          <div class="card-content">
+            <span class="tag tag-mern">MERN</span>
+            <h3>AI Analytics Dashboard</h3>
+            <a href="https://your-project-1.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-1.com
+            </a>
+            <p>Real-time data visualization engine powered by React, Node.js, Express, and MongoDB.</p>
 
-  <!-- Larger Title -->
-  <h3 style="font-size: 1.5rem; margin-top: 0.4rem; margin-bottom: 0.5rem; color: #ffffff;">Cloud Infrastructure Portal</h3>
-
-  <!-- Larger Description Text -->
-  <p style="font-size: 1.05rem; line-height: 1.5; color: var(--text-muted);">
-    Angular application designed to provision servers and query Mongo database metrics.
-  </p>
-
-  <!-- Project Action Badges with Larger Text -->
-  <div class="card-links" style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;">
-    <!-- GitHub Repo -->
-    <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener noreferrer" 
-       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
-      🐙 GitHub
-    </a>
-
-    <!-- Live Website -->
-    <a href="https://your-live-website.com" target="_blank" rel="noopener noreferrer" 
-       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
-      🌐 https://your-live-website.com
-    </a>
-
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" 
-       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
-      💼 https://linkedin.com/in/your-profile
-    </a>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/923000000000?text=Hi%20Usama,%20I%20saw%20your%20Cloud%20Infrastructure%20Portal%20project!" target="_blank" rel="noopener noreferrer" 
-       style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
-      💬 WhatsApp
-    </a>
-  </div>
-</div>
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-1" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20AI%20Analytics%20Dashboard!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
 
+        <!-- Project Card 2 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Project 2">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>Real-Time Voice Assistant</h3>
+            <a href="https://your-project-2.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-2.com
+            </a>
             <p>Full-stack conversational agent platform using WebSocket streaming and Express backend.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-2" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Voice%20Assistant%20project!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Project Card 3 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 3">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Micro-SaaS Billing Engine</h3>
+            <a href="https://your-project-3.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-3.com
+            </a>
             <p>Scalable subscription management hub built with MongoDB, Express, React, and Stripe API.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-3" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Micro-SaaS%20Billing%20Engine!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Project Card 4 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Project 4">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>DevOps Monitoring Tool</h3>
+            <a href="https://your-project-4.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-4.com
+            </a>
             <p>Container status tracker with custom React charts and Express backend log aggregators.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-4" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20DevOps%20Monitoring%20Tool!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -401,62 +493,104 @@
 
     <!-- SLIDE 2: MEAN Stack Projects -->
     <section class="slide">
-      <header class="profile-header">
-        <div class="profile-info">
-          <div class="avatar-container">
-            <img 
-              src="assests/profile-pic.png" 
-              alt="Usama Ali Profile" 
-            >
-          </div>
-          <div>
-            <h1>Usama Ali</h1>
-            <p>Full-Stack Engineer &bull; MEAN & MERN Architecture</p>
-          </div>
-        </div>
-
-        <nav class="header-nav">
-          <button class="nav-btn" onclick="openModal('about')">👤 About Me</button>
-          <button class="nav-btn" onclick="openModal('contact')">📩 Contact</button>
-          <a href="https://github.com" target="_blank" class="nav-btn">🐙 GitHub</a>
-          <a href="https://linkedin.com" target="_blank" class="nav-btn">💼 LinkedIn</a>
-        </nav>
-      </header>
-
       <div class="projects-grid">
+        <!-- Project Card 5 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Project 5">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Enterprise CRM System</h3>
+            <a href="https://your-project-5.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-5.com
+            </a>
             <p>Angular-driven customer relationship tool utilizing Angular RxJS state management & Express.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-5" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Enterprise%20CRM%20System!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Project Card 6 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 6">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>Task Management Suite</h3>
+            <a href="https://your-project-6.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-6.com
+            </a>
             <p>Kanban-style workflow coordinator with strict TypeScript interfaces and Node REST APIs.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-6" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Task%20Management%20Suite!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Project Card 7 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Project 7">
           <div class="card-content">
             <span class="tag tag-mean">MEAN</span>
             <h3>Cloud Infrastructure Portal</h3>
+            <a href="https://your-project-7.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-7.com
+            </a>
             <p>Angular application designed to provision servers and query Mongo database metrics.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-7" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Cloud%20Infrastructure%20Portal!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Project Card 8 -->
         <div class="project-card">
           <img class="card-bg-anim" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Project 8">
           <div class="card-content">
             <span class="tag tag-mern">MERN</span>
             <h3>Logistics Tracking System</h3>
+            <a href="https://your-project-8.com" target="_blank" rel="noopener noreferrer" class="live-project-link">
+              🌐 live project : https://your-project-8.com
+            </a>
             <p>Real-time vehicle fleet location tracking dashboard leveraging Angular and Express sockets.</p>
+
+            <div class="card-links">
+              <a href="https://github.com/your-username/repo-8" target="_blank" rel="noopener noreferrer" class="action-btn btn-github">
+                🐙 GitHub Repo
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
+                💼 LinkedIn
+              </a>
+              <a href="https://wa.me/923327969441?text=Hi%20Usama,%20I%20saw%20your%20Logistics%20Tracking%20System!" target="_blank" rel="noopener noreferrer" class="action-btn btn-whatsapp">
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -481,8 +615,7 @@
         body.innerHTML = `
           <h2 style="color: var(--accent); margin-bottom: 0.75rem;">About Me</h2>
           <p style="color: var(--text-muted); line-height: 1.6;">
-            I am a Full-Stack Engineer specializing in scalable web applications using the MERN (MongoDB, Express, React, Node.js) and MEAN (MongoDB, Express, Angular, Node.js) stacks. I build performant backend architectures and dynamic, responsive frontends.
-          </p>
+           Full-Stack Engineer with 5+ years of experience architecting high-performance web applications across healthcare, banking, and e-commerce. Specializing in Angular, React, and Node.js, I focus on scalable SPAs, real-time data visualizations (Chart.js, WebSockets), and AI-driven enhancements. Grounded in strong full-stack architecture and UI/UX design systems, I deliver clean, optimized code that scales. </p>
         `;
       } else if (type === 'contact') {
         body.innerHTML = `
@@ -499,7 +632,6 @@
       document.getElementById('infoModal').style.display = 'none';
     }
 
-    // Close modal when clicking outside content box
     window.onclick = function(event) {
       const modal = document.getElementById('infoModal');
       if (event.target === modal) {
